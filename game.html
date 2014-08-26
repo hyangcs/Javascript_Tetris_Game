@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+      <title>Tetris</title>
+      <script src="js/lib/jquery.min.js"></script>
+      <style type="text/css">
+        body {
+          background: #eaeaea url('bg.jpg');
+          background-size: 40% auto;
+          margin:0px;
+          padding:0px;
+          text-align:center;
+        }
+        canvas {
+          margin-left: auto;
+          margin-right: auto;
+          border:1px solid black;
+        }
+        button {
+          width: 150px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          font-size: .8em !important;
+        }
+        select {
+          width: 300px;
+          font-size: .8em !important;
+        }
+        #game_area { 
+          width: 50%; float: left; 
+        }
+        #score_area
+        {
+          width: 30%; float: left;
+          margin-top:100px;
+        }
+        #new_score_row
+        {
+          display: none;
+        }
+        #container { 
+          align: right;
+          margin-left:300px;
+        }
+        #score_table
+        {
+          background-color: white;
+        }
+        #canvas
+        {
+          background-color: white;
+        }
+        table
+        {
+          height: 10px;
+          width: 400px;
+        }
+      </style>
+  </head>
+  <body>
+  <div id='container'>
+  <div id='game_area'>
+    <h1>Tetris</h1>
+    <p>
+      <a href="http://davesjavascriptjquery.blogspot.com/2013/06/recreating-tetris-using-javascript-and.html">Wanna build some similar, check it out!</a>
+    </p>
+    <canvas id="canvas" width="300" height="400"></canvas>
+    <script language="JavaScript" type="text/javascript" src="game.js"></script><br \>
+    <select id="level">
+      <option value="1">Level 1</option>
+      <option value="2">Level 2</option>
+      <option value="3">Level 3</option>
+      <option value="4">Level 4</option>
+      <option value="5">Level 5</option>
+    </select>
+    <br \>
+    <button id='start'>Start</button>
+    <button id='pause'>Pause</button>
+  </div>
+  <script type="text/x-handlebars" data-template-name="records">
+  <div id='score_area'>
+    <table border="1" id='score_table'>
+    <tr>
+      <td>Name</td>
+      <td>Highest Points</td>
+      <td>Date</td>
+    </tr>
+    {{#each item in sortedContent}}
+    <tr>
+      <td >{{item.name}}</td>
+      <td >{{item.score}}</td>
+      <td >{{format-date "LL" item.date}}</td>
+    </tr>
+    {{/each}}
+    <tr id="new_score_row">
+    <td >{{input type="text" id="new_name" placeholder="Type your name here" value=newName action="createScore"}}</td>
+    <td >{{input type="number" id="new_score" value=newPoints}}</td>
+    <td >{{format-date "LL" createdAt}}</td>
+    </tr>
+    </table>
+  </div>
+  </script>
+  </div>
+  <script src="js/lib/handlebars.js"></script>
+  <script src="js/lib/ember.js"></script>
+  <script src="js/lib/ember-data.js"></script>
+  <script src="js/lib/local_storage_adapter.js"></script>
+  <script src="js/lib/moment.min.js"></script>
+  <script src="js/application.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/models/record.js"></script>
+  <script src="js/controllers/records_controller.js"></script>
+  <script src="js/views/add_new_record_view.js"></script>
+  </body>
+</html>
